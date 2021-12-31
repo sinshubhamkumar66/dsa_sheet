@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        set<int> s;
+    for (int i = 0;i < nums.size();i++) {
+        if (s.find(nums[i]) != s.end()) {
+            return nums[i];
+        }
+        s.insert(nums[i]);
+    }
+    return 1;
+        
+    }
+};
+//second approch 
+
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        int slow=nums[0], fast=nums[0];
+        
+        //NOTE: We are using do-while loop here, because at the very first step 'fast==slow'. you can use normal while loop also, but for that you have to add additional conditions also.
+        do{
+            slow=nums[slow];  //one step at a time
+            fast=nums[nums[fast]];  //two steps at a time
+        }while(slow!=fast);
+        
+        //We have met our first collision, now we have to find out the value for which the collision happened
+        slow=nums[0];   //re-initializing the slow pointer with the 0-th value 
+        while(slow!=fast){
+            slow=nums[slow];  //one step at a time
+            fast=nums[fast];  //one step at a time
+        }
+        return fast;  //return slow will also work
+
+        
+    }
+};
