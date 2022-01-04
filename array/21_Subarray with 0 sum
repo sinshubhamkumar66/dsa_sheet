@@ -1,0 +1,13 @@
+bool subArrayExists(int arr[], int n)
+    {
+        map<int,int> mp;
+        int sum=0;
+        for(int i=0;i<n;i++)
+        {
+            sum+=arr[i];
+            mp[sum]++;
+            if(mp[sum]>1 || sum==0) 
+                return true;
+        }
+        return false;
+    }
