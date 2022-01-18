@@ -1,0 +1,43 @@
+int distinct(vector<vector<int>> a, int n)
+    {
+        // code here
+        unordered_map<int, int>mp;
+        int count=0;
+        for(int i=0; i<n; i++)
+        {
+            set<int>s;
+            for(int j=0; j<n; j++)
+            {
+                s.insert(a[i][j]);
+            }
+            for(auto it:s ){
+                mp[it]++;
+            }
+        }
+        for(auto it:mp){
+            if(it.second==n)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+};
+
+// { Driver Code Starts.
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        int N;
+        cin>>N;
+        vector<vector<int>> M(N, vector<int>(N, 0));
+        for(int i = 0;i < N*N; i++)
+            cin>>M[i/N][i%N];
+        
+        Solution ob;
+        cout<<ob.distinct(M, N)<<"\n";
+    }
+    return 0;
+}  // } Driver C
