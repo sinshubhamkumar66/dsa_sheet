@@ -1,0 +1,15 @@
+public static boolean detectLoop(Node head){
+        // Add code here
+        Node low=head;
+        Node high=head;
+        while(high!=null && high.next!=null)
+        {
+            low=low.next;
+            high=high.next.next;
+            if(high==low)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
